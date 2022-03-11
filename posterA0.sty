@@ -1,0 +1,179 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Poster A0 portrait template University of Tübingen
+%
+% created by Ekaterina Kohler (ekaterina.kohler@googlemail.com)
+% 2022/03/07: completely revised by Chris Nill (chris.nill@student.uni-tuebingen.de)
+% 2022/03/08: refined, restructured by Simon Kochsiek (simon.kochsiek@student.uni-tuebingen.de)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% standard input packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\renewcommand{\familydefault}{\rmdefault}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{fancybox}
+\usepackage{framed}
+
+
+%% standard packages for physics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amssymb,amsmath,mathtools}
+\usepackage{mathbbol}
+\usepackage{physics} % Standard package for physics (bra-ket, del, curl, ...)
+\usepackage{siunitx} % Specify numerical values correctly formatted with SI unit
+\usepackage{relsize} % scale math symbols (e.g. the sum symbol)
+%\usepackage{amsthm} % mathematical thorems
+%\usepackage{amsfonts, dsfont}
+
+% SVG graphics (comment out which platform you use)
+% unix:
+\usepackage{svg}
+% windows: need path to inkscape executable
+%\usepackage[inkscape="C:/Users/Simon/Tools/Inkscape/bin/inkscape"]{svg} 
+
+
+%% geometry of paper edges
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\geometry{top=20mm, left=15mm, right=50mm, bottom=40mm,}
+
+
+%% color settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xcolor}
+% use the corporate design from university, see https://www.cd.uni-tuebingen.de
+\definecolor{rot}{RGB}{165,30,55} % uni-rot
+\definecolor{blau}{RGB}{65,90,140} % uni-blau
+\definecolor{gold}{RGB}{180,160,105} % uni-gold
+\definecolor{anthrazit}{RGB}{50,65,75} % uni-anthrazit
+\definecolor{mainCol}{RGB}{255,255,255} % Hintergrund weiss
+
+\colorlet{titleColor}{rot} % color of title
+\colorlet{sectionColor}{rot} % color of section headings
+\colorlet{shadecolor}{gray!15} % shading boxes for emphasis
+
+%% multi columns setup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{multicol}
+\setlength{\columnsep}{2.5cm} % distance between columns
+\setlength{\columnseprule}{4pt} % default thickness of \hrule is 0.4pt (the bottom line)
+\usepackage{AutoMultiColItemize} % automatic multi column itemize and enumerate
+\renewcommand{\columnseprulecolor}{\color{rot}}
+
+
+%% font settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\familydefault}{\rmdefault} % don't use sciposters font, it's not scalable
+\SetSymbolFont{largesymbols}{normal}{OMX}{cmex}{m}{n} % change equations style to large
+
+% font sizes
+\newcommand{\titleSize}{\fontsize{100pt}{125pt}\selectfont} % fontsize of section headings
+\newcommand{\fakultSize}{\fontsize{55pt}{65pt}\selectfont} % fontsize of fakulty
+\newcommand{\departSize}{\Large} % fontsize of department
+\newcommand{\authorSize}{\Large} % fontsize of authors
+
+\renewcommand{\sectionsize}{\large} % fontsize of section headings
+\renewcommand{\normalsize}{\fontsize{24}{35}\selectfont} % font size of regular text
+
+\newcommand{\bibliographyReferenceSize}{\large} % size of bibliography section 'References'
+\newcommand{\bibliographySize}{\footnotesize} % size of bibliography entries
+
+
+%% hyperlinks and image captions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+	unicode=true,
+	colorlinks=true,
+	linkcolor=black,
+	citecolor=blau,
+	urlcolor=blau
+]{hyperref}
+\usepackage[
+	format=plain, % Die Beschriftung als Absatz.
+	margin={0pt,0pt}, % Margin der Beschriftung ist 1cm.
+	labelformat=simple, % Hinter der Zahl soll eine runde Klammer stehen z.B. 1)
+	labelsep=colon, % Zwischen Label und Text soll ein Zeilenumbruch erfolgen.
+	textformat=simple, % Der Text soll nicht verändert werden.
+	justification=justified, % Der Text soll zentriert werden.
+	labelfont=footnotesize, % Der Bezeichner soll groß und fett geschrieben werden.
+	font=footnotesize,
+	textfont=default % Der Text soll kursiv gesetzt werden. -->it
+]{caption}
+
+% macros for references
+\newcommand{\figref}[1]{(fig.~\ref{#1})}
+\renewcommand{\eqref}[1]{(eq. \ref{#1})}
+
+
+%% bibliography with biber
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{csquotes} % quotations with inverted commas, required by BibLaTeX
+\usepackage[citestyle=phys, bibstyle=phys, biblabel=brackets, pageranges=true, block=ragged, backend=biber]{biblatex}
+
+% add path to your .bib here
+\addbibresource[]{./sources.bib}
+\AtBeginBibliography{\bibliographySize}
+\defbibheading{customBibTitle}{\bibliographyReferenceSize \bf \textcolor{rot}{References}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% macros for title and sections
+%
+% in general you don't have to change this
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+  {-1.5ex \@plus -1ex \@minus -.2ex}%
+  {0.3ex \@plus.2ex}%
+  {\color{sectionColor}\sectionsize\normalfont\bfseries}}
+
+\renewcommand\subsection{\@startsection{subsection}{1}{\z@}%
+  {-1.5ex \@plus -1ex \@minus -.2ex}%
+  {0.3ex \@plus.2ex}%
+  {\color{sectionColor}\subsectionsize\normalfont\bfseries}}
+
+\renewcommand{\maketitle}{
+	\vspace*{-2cm}
+	\begin{flushleft}
+		\begin{minipage}[t]{0.275\paperwidth}
+			\raisebox{-35mm}{\includegraphics[width=0.275\paperwidth, keepaspectratio=true]{logos/UT_WBMW_Rot_RGB_01.png}}
+		\end{minipage}
+		\hspace{1.5cm}
+		\begin{minipage}[t]{1.5cm}
+			\vspace{-2cm}
+			\color{rot}{\rule{2pt}{6cm}}
+		\end{minipage}
+		\begin{minipage}[t]{0.275\paperwidth}
+			\begin{flushleft}
+			{\fakultSize
+				\textbf{\color{titleColor}\fakult}\par}
+			{\bf \departSize \fbname}
+
+			\end{flushleft}
+		\end{minipage}
+		\hspace{2cm}
+		\begin{minipage}[t]{0.275\paperwidth}
+			\begin{flushright}
+			{\departSize
+				\textbf{\depart}\par}
+			\end{flushright}
+		\end{minipage}
+		\vspace{2cm}\\
+		\begin{center}
+			{\titleSize \bf \color{titleColor} \titel}\\[1cm]
+		\end{center}
+	\end{flushleft}
+	\begin{center}
+		\textsc{\authorSize \authors}\\
+		{\normalsize \authorsAddress}\\
+		\vspace{-\baselineskip}
+		\raggedleft
+		{\normalsize \textcolor{rot}{\presentationDate}}
+	\end{center}
+	\flushleft
+}
